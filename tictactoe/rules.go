@@ -56,3 +56,12 @@ func (r DiagonalMatch) HasWon(board [][]string) bool {
 
 	return wholeStr == strings.Repeat(PlayerX, len(board)) || wholeStr == strings.Repeat(PlayerY, len(board))
 }
+
+type CornerMatch struct{}
+
+func (r CornerMatch) HasWon(board [][]string) bool {
+	length := len(board) - 1
+	wholeStr := board[0][0] + board[0][length] + board[length][0] + board[length][length]
+
+	return wholeStr == strings.Repeat(PlayerX, 4) || wholeStr == strings.Repeat(PlayerY, 4)
+}

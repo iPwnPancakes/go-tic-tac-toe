@@ -11,6 +11,7 @@ func main() {
 	game.AddRule(tictactoe.HorizontalMatch{})
 	game.AddRule(tictactoe.VerticalMatch{})
 	game.AddRule(tictactoe.DiagonalMatch{})
+	game.AddRule(tictactoe.CornerMatch{})
 
 	err := game.Start(3, tictactoe.PlayerX)
 	if err != nil {

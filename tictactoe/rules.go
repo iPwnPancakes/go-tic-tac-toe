@@ -32,12 +32,19 @@ func (r HorizontalMatch) GetDescription() string {
 type VerticalMatch struct{}
 
 func (r VerticalMatch) HasWon(board [][]string) bool {
-	var wholeStr string
-	for row := 0; row < len(board); row++ {
-		wholeStr += board[row][0]
+	for col := 0; col < len(board); col++ {
+		wholeStr := ""
+
+		for row := 0; row < len(board); row++ {
+			wholeStr += board[row][col]
+		}
+
+		if wholeStr == strings.Repeat(PlayerX, len(board)) || wholeStr == strings.Repeat(PlayerY, len(board)) {
+			return true
+		}
 	}
 
-	return wholeStr == strings.Repeat(PlayerX, len(board)) || wholeStr == strings.Repeat(PlayerY, len(board))
+	return false
 }
 
 func (r VerticalMatch) GetDescription() string {

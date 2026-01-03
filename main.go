@@ -3,10 +3,20 @@ package main
 import (
 	"fmt"
 
+	gameserver "github.com/ipwnpancakes/go-tic-tac-toe/game-server"
 	"github.com/ipwnpancakes/go-tic-tac-toe/tictactoe"
 )
 
 func main() {
+	var err error
+
+	test := gameserver.Server{}
+	err = test.Start("tcp://localhost:5020")
+
+	if err != nil {
+		panic(err)
+	}
+
 	fmt.Println("Welcome to my implementation of tic-tac-toe in golang!")
 	fmt.Println()
 
@@ -18,7 +28,7 @@ func main() {
 
 	printRules(game.GetRules())
 
-	err := game.Start(3, tictactoe.PlayerX)
+	err = game.Start(3, tictactoe.PlayerX)
 	if err != nil {
 		panic(err)
 	}

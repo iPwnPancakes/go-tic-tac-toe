@@ -28,11 +28,7 @@ func main() {
 		fmt.Println("Board State:")
 		printBoard(game.GetBoard())
 
-		var row, col int
-
-		fmt.Println("Which row/col? Format: \"X Y\"")
-		fmt.Scan(&row, &col)
-		fmt.Println()
+		row, col := collectInput()
 
 		err := game.SetPiece(row, col)
 		if err != nil {
@@ -83,4 +79,24 @@ func printBoard(board [][]string) {
 	}
 
 	fmt.Println()
+}
+
+func collectInput() (int, int) {
+	var row, col int
+
+	for {
+		fmt.Println("Which row/col? Format: \"X Y\"")
+		_, err := fmt.Scan(&row, &col)
+		if err != nil {
+			fmt.Println("Invalid input. Please enter two numbers separated by a space.")
+			// Clear the input buffer
+			var discard string
+			fmt.Scanln(&discard)
+			continue
+		}
+		fmt.Println()
+		break
+	}
+
+	return row, col
 }

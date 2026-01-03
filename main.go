@@ -9,6 +9,7 @@ import (
 func main() {
 	game := tictactoe.Game{}
 	game.AddRule(tictactoe.HorizontalMatch{})
+	game.AddRule(tictactoe.VerticalMatch{})
 
 	game.Start(3)
 
@@ -25,7 +26,10 @@ func main() {
 		err := game.SetPiece(row, col)
 		if err != nil {
 			fmt.Println(err)
-		} else {
+			continue
+		}
+
+		if !game.HasWon() {
 			game.PassTurn()
 		}
 	}

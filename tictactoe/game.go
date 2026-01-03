@@ -15,7 +15,7 @@ func (g *Game) Start(size int) {
 		g.board[row] = make([]string, size)
 
 		for col := 0; col < size; col++ {
-			g.board[row][col] = ""
+			g.board[row][col] = " "
 		}
 	}
 

@@ -10,6 +10,7 @@ func main() {
 	game := tictactoe.Game{}
 	game.AddRule(tictactoe.HorizontalMatch{})
 	game.AddRule(tictactoe.VerticalMatch{})
+	game.AddRule(tictactoe.DiagonalMatch{})
 
 	game.Start(3)
 

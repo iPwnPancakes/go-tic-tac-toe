@@ -34,3 +34,25 @@ func (r VerticalMatch) HasWon(board [][]string) bool {
 
 	return wholeStr == strings.Repeat(PlayerX, len(board)) || wholeStr == strings.Repeat(PlayerY, len(board))
 }
+
+type DiagonalMatch struct{}
+
+func (r DiagonalMatch) HasWon(board [][]string) bool {
+	var wholeStr string
+
+	wholeStr = ""
+	for row := 0; row < len(board); row++ {
+		wholeStr += board[row][row]
+	}
+
+	if wholeStr == strings.Repeat(PlayerX, len(board)) || wholeStr == strings.Repeat(PlayerY, len(board)) {
+		return true
+	}
+
+	wholeStr = ""
+	for row := 0; row < len(board); row++ {
+		wholeStr += board[row][len(board)-1-row]
+	}
+
+	return wholeStr == strings.Repeat(PlayerX, len(board)) || wholeStr == strings.Repeat(PlayerY, len(board))
+}

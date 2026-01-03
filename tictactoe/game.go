@@ -15,7 +15,11 @@ type Game struct {
 	rules []Rule
 }
 
-func (g *Game) Start(size int) {
+func (g *Game) Start(size int, startingPlayer string) error {
+	if startingPlayer != PlayerX && startingPlayer != PlayerY {
+		return errors.New("Invalid Player")
+	}
+
 	g.board = make([][]string, size)
 	for row := 0; row < size; row++ {
 		g.board[row] = make([]string, size)
@@ -25,7 +29,9 @@ func (g *Game) Start(size int) {
 		}
 	}
 
-	g.turn = PlayerX
+	g.turn = startingPlayer
+
+	return nil
 }
 
 func (g *Game) AddRule(rule Rule) {

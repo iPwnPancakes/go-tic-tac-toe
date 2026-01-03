@@ -12,7 +12,10 @@ func main() {
 	game.AddRule(tictactoe.VerticalMatch{})
 	game.AddRule(tictactoe.DiagonalMatch{})
 
-	game.Start(3)
+	err := game.Start(3, tictactoe.PlayerX)
+	if err != nil {
+		panic(err)
+	}
 
 	for !game.HasWon() {
 		fmt.Printf("It's %s's Turn.", game.GetCurrentPlayer())
@@ -35,7 +38,7 @@ func main() {
 		}
 	}
 
-	fmt.Printf("%s HAS WON WOOOOO", game.GetCurrentPlayer())
+	fmt.Printf("%s HAS WON WOOOOO\n", game.GetCurrentPlayer())
 }
 
 func printBoard(board [][]string) {

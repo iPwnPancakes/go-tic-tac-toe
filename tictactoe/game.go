@@ -2,6 +2,12 @@ package tictactoe
 
 import "errors"
 
+const (
+	PlayerX   string = "X"
+	PlayerY   string = "O"
+	EmptyCell string = " 	"
+)
+
 type Game struct {
 	Size  int
 	board [][]string
@@ -15,11 +21,11 @@ func (g *Game) Start(size int) {
 		g.board[row] = make([]string, size)
 
 		for col := 0; col < size; col++ {
-			g.board[row][col] = " "
+			g.board[row][col] = EmptyCell
 		}
 	}
 
-	g.turn = "X"
+	g.turn = PlayerX
 }
 
 func (g *Game) AddRule(rule Rule) {
@@ -35,10 +41,10 @@ func (g Game) GetCurrentPlayer() string {
 }
 
 func (g *Game) PassTurn() {
-	if g.turn == "X" {
-		g.turn = "O"
+	if g.turn == PlayerX {
+		g.turn = PlayerY
 	} else {
-		g.turn = "X"
+		g.turn = PlayerX
 	}
 }
 

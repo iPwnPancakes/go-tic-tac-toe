@@ -8,7 +8,7 @@ type HorizontalMatch struct{}
 
 func (r HorizontalMatch) HasWon(board [][]string) bool {
 	for row := 0; row < len(board); row++ {
-		if board[row][0] != " " && allSameInRow(board[row]) {
+		if board[row][0] != EmptyCell && allSameInRow(board[row]) {
 			return true
 		}
 	}
@@ -30,7 +30,7 @@ func allSameInRow(arr []string) bool {
 type VerticalMatch struct{}
 
 func (r VerticalMatch) HasWon(board [][]string) bool {
-	if board[0][0] == " " {
+	if board[0][0] == EmptyCell {
 		return false
 	}
 

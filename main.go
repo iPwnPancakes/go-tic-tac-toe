@@ -40,7 +40,7 @@ func main() {
 func printBoard(board [][]string) {
 	for i, row := range board {
 		for j, cell := range row {
-			if cell == "" {
+			if cell == tictactoe.EmptyCell {
 				fmt.Print("   ")
 			} else {
 				fmt.Printf(" %s ", cell)

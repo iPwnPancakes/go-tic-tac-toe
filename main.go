@@ -7,11 +7,16 @@ import (
 )
 
 func main() {
+	fmt.Println("Welcome to my implementation of tic-tac-toe in golang!")
+	fmt.Println()
+
 	game := tictactoe.Game{}
 	game.AddRule(tictactoe.HorizontalMatch{})
 	game.AddRule(tictactoe.VerticalMatch{})
 	game.AddRule(tictactoe.DiagonalMatch{})
 	game.AddRule(tictactoe.CornerMatch{})
+
+	printRules(game.GetRules())
 
 	err := game.Start(3, tictactoe.PlayerX)
 	if err != nil {
@@ -19,14 +24,15 @@ func main() {
 	}
 
 	for !game.HasWon() {
-		fmt.Printf("It's %s's Turn.", game.GetCurrentPlayer())
+		fmt.Printf("It's %s's Turn.\n\n", game.GetCurrentPlayer())
 		fmt.Println("Board State:")
 		printBoard(game.GetBoard())
 
 		var row, col int
 
-		fmt.Println("Which row/col?")
+		fmt.Println("Which row/col? Format: \"X Y\"")
 		fmt.Scan(&row, &col)
+		fmt.Println()
 
 		err := game.SetPiece(row, col)
 		if err != nil {
@@ -40,6 +46,16 @@ func main() {
 	}
 
 	fmt.Printf("%s HAS WON WOOOOO\n", game.GetCurrentPlayer())
+}
+
+func printRules(rules []tictactoe.Rule) {
+	fmt.Println("Rules in play:")
+
+	for _, rule := range rules {
+		fmt.Println("- " + rule.GetDescription())
+	}
+
+	fmt.Println()
 }
 
 func printBoard(board [][]string) {
@@ -65,4 +81,6 @@ func printBoard(board [][]string) {
 			fmt.Println()
 		}
 	}
+
+	fmt.Println()
 }

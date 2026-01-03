@@ -38,6 +38,10 @@ func (g *Game) AddRule(rule Rule) {
 	g.rules = append(g.rules, rule)
 }
 
+func (g Game) GetRules() []Rule {
+	return g.rules
+}
+
 func (g Game) GetBoard() [][]string {
 	return g.board
 }

@@ -4,6 +4,7 @@ import "strings"
 
 type Rule interface {
 	HasWon(board [][]string) bool
+	GetDescription() string
 }
 
 type HorizontalMatch struct{}
@@ -24,6 +25,10 @@ func (r HorizontalMatch) HasWon(board [][]string) bool {
 	return false
 }
 
+func (r HorizontalMatch) GetDescription() string {
+	return "HorizontalMatch"
+}
+
 type VerticalMatch struct{}
 
 func (r VerticalMatch) HasWon(board [][]string) bool {
@@ -35,7 +40,15 @@ func (r VerticalMatch) HasWon(board [][]string) bool {
 	return wholeStr == strings.Repeat(PlayerX, len(board)) || wholeStr == strings.Repeat(PlayerY, len(board))
 }
 
+func (r VerticalMatch) GetDescription() string {
+	return "VerticalMatch"
+}
+
 type DiagonalMatch struct{}
+
+func (r DiagonalMatch) GetDescription() string {
+	return "DiagonalMatch"
+}
 
 func (r DiagonalMatch) HasWon(board [][]string) bool {
 	var wholeStr string
@@ -58,6 +71,10 @@ func (r DiagonalMatch) HasWon(board [][]string) bool {
 }
 
 type CornerMatch struct{}
+
+func (r CornerMatch) GetDescription() string {
+	return "CornerMatch"
+}
 
 func (r CornerMatch) HasWon(board [][]string) bool {
 	length := len(board) - 1
